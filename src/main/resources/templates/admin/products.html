@@ -77,7 +77,7 @@
 											<span aria-hidden="true">&laquo;</span>
 										</a>
 									</li>
-									<li th:each="i,${numbers.sequence(1, totalPages)}" th:classappend="${pageNo+1==i}?'active':''" class="page-item"><a class="page-link" th:href="@{'/admin/products?pageNo='+${i-1}}">[[${i}]]</a></li>
+									<li th:each="i:${#numbers.sequence(1, totalPages)}" th:classappend="${pageNo+1==i}?'active':''" class="page-item"><a class="page-link" th:href="@{'/admin/products?pageNo='+${i-1}}">[[${i}]]</a></li>
 									<li class="page-item" th:classappend="${isLast} ? 'disabled':''">
 										<a class="page-link" th:href="@{'/admin/products?pageNo='+${pageNo+1}}" aria-label="Next">
 											<span aria-hidden="true">&raquo;</span>

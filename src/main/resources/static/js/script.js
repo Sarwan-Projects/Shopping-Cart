@@ -31,7 +31,7 @@ $(function() {
 			confirmPassword: {
 				required: true,
 				space: true,
-				equalTo: '#pass'
+				equalTo: '#password'
 
 			},
 			address: {
