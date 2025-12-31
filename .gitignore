@@ -52,12 +52,13 @@ logs/
 .DS_Store
 Thumbs.db
 
-### Uploaded Images (keep folders, ignore user uploads) ###
-src/main/resources/static/img/product_img/*
-src/main/resources/static/img/category_img/*
+### Uploaded Images (keep sample images, ignore user uploads at runtime) ###
+# Product images - include sample images
+!src/main/resources/static/img/product_img/
+# Category images - include sample images  
+!src/main/resources/static/img/category_img/
+# Profile images - keep defaults
 src/main/resources/static/img/profile_img/*
-!src/main/resources/static/img/product_img/.gitkeep
-!src/main/resources/static/img/category_img/.gitkeep
 !src/main/resources/static/img/profile_img/.gitkeep
 !src/main/resources/static/img/profile_img/admin.png
 !src/main/resources/static/img/profile_img/user.png
