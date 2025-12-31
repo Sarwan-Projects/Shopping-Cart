@@ -55,9 +55,21 @@ public class DataInitializer implements CommandLineRunner {
             admin.setPincode("400001");
             admin.setRole("ROLE_ADMIN");
             admin.setIsEnable(true);
+            admin.setAccountNonLocked(true);
+            admin.setFailedAttempt(0);
             admin.setProfileImage("admin.png");
             userRepository.save(admin);
             System.out.println("✅ Admin user created: admin@ecom.com / admin123");
+        } else {
+            // Update existing admin to ensure accountNonLocked is set
+            UserDtls admin = userRepository.findByEmail("admin@ecom.com");
+            if (admin.getAccountNonLocked() == null) {
+                admin.setAccountNonLocked(true);
+                admin.setFailedAttempt(0);
+                admin.setIsEnable(true);
+                userRepository.save(admin);
+                System.out.println("✅ Admin user updated with security fields");
+            }
         }
 
         // Create Test User if not exists
@@ -73,10 +85,34 @@ public class DataInitializer implements CommandLineRunner {
             user.setPincode("110001");
             user.setRole("ROLE_USER");
             user.setIsEnable(true);
+            user.setAccountNonLocked(true);
+            user.setFailedAttempt(0);
             user.setProfileImage("user.png");
             userRepository.save(user);
             System.out.println("✅ Test user created: user@ecom.com / user123");
+        } else {
+            // Update existing user to ensure accountNonLocked is set
+            UserDtls user = userRepository.findByEmail("user@ecom.com");
+            if (user.getAccountNonLocked() == null) {
+                user.setAccountNonLocked(true);
+                user.setFailedAttempt(0);
+                user.setIsEnable(true);
+                userRepository.save(user);
+                System.out.println("✅ Test user updated with security fields");
+            }
         }
+        
+        // Fix any other users with null accountNonLocked
+        userRepository.findAll().forEach(u -> {
+            if (u.getAccountNonLocked() == null || u.getFailedAttempt() == null) {
+                u.setAccountNonLocked(true);
+                u.setFailedAttempt(0);
+                if (u.getIsEnable() == null) {
+                    u.setIsEnable(true);
+                }
+                userRepository.save(u);
+            }
+        });
 
         // Category image mapping (using hyphens instead of spaces)
         Map<String, String> categoryImages = new HashMap<>();
