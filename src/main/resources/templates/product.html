@@ -63,7 +63,7 @@
                                     <div class="col-6 col-lg-4" th:each="p : ${products}">
                                         <div class="card product-card h-100">
                                             <div class="position-relative overflow-hidden">
-                                                <img th:src="${p.image != null && p.image != 'default.png'} ? @{'/img/product_img/'+${p.image}} : 'https://via.placeholder.com/300x200/6366f1/ffffff?text='+${p.title}" class="card-img-top" alt="Product" style="height: 200px; object-fit: cover;">
+                                                <img th:src="@{'/img/product_img/'+${p.image}}" class="card-img-top" alt="Product" style="height: 200px; object-fit: cover;">
                                                 <th:block th:if="${p.discount > 0}">
                                                     <span class="position-absolute top-0 end-0 badge bg-danger m-2">
                                                         [[${p.discount}]]% OFF

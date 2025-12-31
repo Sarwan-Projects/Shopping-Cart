@@ -31,6 +31,8 @@
 
 > Admin can manage products, categories, orders, and users. User can browse, add to cart, and place orders.
 
+> **Sample Data:** 6 categories with 36 products (6 per category) are auto-created on first run.
+
 ---
 
 ## ✨ Features
@@ -83,7 +85,7 @@ src/main/resources/
 |--------|----------|-------------|
 | GET | `/` | Home page |
 | GET | `/products` | Product listing |
-| GET | `/product/{id}` | Product details |
+| GET | `/product/{slug}` | Product details |
 | GET | `/signin` | Login |
 | GET | `/register` | Registration |
 

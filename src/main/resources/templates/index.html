@@ -59,7 +59,7 @@
                     <div class="col-6 col-md-4 col-lg-2" th:each="c : ${category}">
                         <a th:href="@{'/products?category='+${c.name}}" class="text-decoration-none">
                             <div class="category-card">
-                                <img th:src="${c.imageName != null && c.imageName != 'default.png'} ? @{'img/category_img/'+${c.imageName}} : 'https://via.placeholder.com/100x100/6366f1/ffffff?text='+${c.name}" alt="Category" class="img-fluid" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                                <img th:src="@{'img/category_img/'+${c.imageName}}" alt="Category" class="img-fluid" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
                                 <h6 class="mt-3 mb-0 text-dark fw-semibold">[[${c.name}]]</h6>
                             </div>
                         </a>
@@ -82,7 +82,7 @@
                         <div class="col-6 col-md-4 col-lg-3" th:each="p : ${products}">
                             <div class="card product-card h-100">
                                 <div class="overflow-hidden">
-                                    <img th:src="${p.image != null && p.image != 'default.png'} ? @{'img/product_img/'+${p.image}} : 'https://via.placeholder.com/300x200/6366f1/ffffff?text=Product'" class="card-img-top" alt="Product" style="height: 200px; object-fit: cover;">
+                                    <img th:src="@{'img/product_img/'+${p.image}}" class="card-img-top" alt="Product" style="height: 200px; object-fit: cover;">
                                 </div>
                                 <div class="card-body text-center">
                                     <h6 class="card-title fw-semibold mb-2">
