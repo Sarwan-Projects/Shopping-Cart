@@ -1,57 +1,82 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/" th:replace="~{base::layout(~{::section})}">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Users - Admin</title>
 </head>
 <body>
-	<section>
-		<div class="container-fluid mt-5 p-5">
-			<div class="card card-sh">
-				<div class="card-header text-center">
-					<p class="fs-4" th:if="${userType==1}">Users</p>
-					<p class="fs-4" th:if="${userType==2}">Admins</p>
-					<th:block th:if="${session.succMsg}">
-						<p class="text-success fw-bold">[[${session.succMsg}]]</p>
-						<th:block th:text="${@commonServiceImpl.removeSession()}"></th:block>
-					</th:block>
-					<th:block th:if="${session.errorMsg}">
-						<p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
-						<th:block th:text="${@commonServiceImpl.removeSession()}"></th:block>
-					</th:block>
-				</div>
-				<div class="card-body">
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">S No.</th>
-								<th scope="col">Profile</th>
-								<th scope="col">Name</th>
-								<th scope="col">Email</th>
-								<th scope="col">Mobile No</th>
-								<th scope="col">Address</th>
-								<th scope="col">Status</th>
-								<th scope="col">Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="u,c : ${users}">
-								<th scope="row">[[${c.count}]]</th>
-								<td><img th:src="@{'/img/profile_img/'+${u.profileImage}}" height="70px" width="50px"></td>
-								<td>[[${u.name}]]</td>
-								<td>[[${u.email}]]</td>
-								<td>[[${u.mobile}]]</td>
-								<td>[[${u.address+', '+u.city+', '+u.state+', '+u.pincode}]]</td>
-								<td>[[${u.isEnable}]]</td>
-								<td><a th:href="@{'/admin/updateStatus?status=true&id='+${u.id}}+'&type='+${userType}" class="btn btn-sm btn-success">Active</a> 
-									<a th:href="@{'/admin/updateStatus?status=false&id='+${u.id}}+'&type='+${userType}" class="btn btn-sm btn-danger">InActive</a>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</section>
+    <section>
+        <div class="container-fluid py-5">
+            <div class="card">
+                <div class="card-header py-4">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="fa-solid fa-users text-primary me-2"></i>
+                        <span th:if="${userType==1}">All Users</span>
+                        <span th:if="${userType==2}">All Admins</span>
+                    </h4>
+                    <th:block th:if="${session.succMsg}">
+                        <div class="alert alert-success mt-3 mb-0">
+                            <i class="fa-solid fa-check-circle me-2"></i>[[${session.succMsg}]]
+                        </div>
+                        <th:block th:text="${@commonServiceImpl.removeSession()}"></th:block>
+                    </th:block>
+                    <th:block th:if="${session.errorMsg}">
+                        <div class="alert alert-danger mt-3 mb-0">
+                            <i class="fa-solid fa-circle-exclamation me-2"></i>[[${session.errorMsg}]]
+                        </div>
+                        <th:block th:text="${@commonServiceImpl.removeSession()}"></th:block>
+                    </th:block>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="ps-4">#</th>
+                                    <th>Profile</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Address</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="u,c : ${users}" class="align-middle">
+                                    <td class="ps-4 fw-semibold">[[${c.count}]]</td>
+                                    <td>
+                                        <img th:src="@{'/img/profile_img/'+${u.profileImage}}" class="rounded-circle" style="height: 50px; width: 50px; object-fit: cover;">
+                                    </td>
+                                    <td class="fw-semibold">[[${u.name}]]</td>
+                                    <td>[[${u.email}]]</td>
+                                    <td>[[${u.mobile}]]</td>
+                                    <td>
+                                        <small class="text-muted">
+                                            [[${u.address}]], [[${u.city}]]<br>
+                                            [[${u.state}]] - [[${u.pincode}]]
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <span class="badge" th:classappend="${u.isEnable} ? 'bg-success' : 'bg-danger'">
+                                            [[${u.isEnable}]]
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{'/admin/updateStatus?status=true&id='+${u.id}+'&type='+${userType}}" class="btn btn-sm btn-outline-success me-1">
+                                            <i class="fa-solid fa-check"></i> Active
+                                        </a>
+                                        <a th:href="@{'/admin/updateStatus?status=false&id='+${u.id}+'&type='+${userType}}" class="btn btn-sm btn-outline-danger">
+                                            <i class="fa-solid fa-ban"></i> Inactive
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

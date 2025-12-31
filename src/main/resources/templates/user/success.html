@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/" th:replace="~{base::layout(~{::section})}">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Order Success - Ecom Store</title>
 </head>
 <body>
-	<section>
-		<div class="container mt-5 p-5">
-			<div class="row">
-				<div class="col-md-6 offset-md-3 text-center">
-					<i class="fa-solid fa-circle-check fa-5x text-success"></i>
-					<p class="fs-3">Order Placed Successfully</p>
-					<p class="fs-4">Order Will be delivered with in 7 days</p>
-					<div class="text-center">
-						<a class="btn btn-primary" href="/">Home</a>
-						<a class="btn btn-primary" href="/user/user-orders">Your Order</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <section>
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card text-center py-5">
+                        <div class="card-body">
+                            <div class="success-icon mb-4">
+                                <i class="fa-solid fa-circle-check fa-5x text-success"></i>
+                            </div>
+                            <h2 class="fw-bold text-success mb-3">Order Placed Successfully!</h2>
+                            <p class="text-muted fs-5 mb-4">
+                                Thank you for your order. Your order will be delivered within 7 days.
+                            </p>
+                            <div class="d-flex justify-content-center gap-3">
+                                <a href="/" class="btn btn-outline-primary">
+                                    <i class="fa-solid fa-home me-2"></i>Continue Shopping
+                                </a>
+                                <a href="/user/user-orders" class="btn btn-primary">
+                                    <i class="fa-solid fa-box me-2"></i>View Orders
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

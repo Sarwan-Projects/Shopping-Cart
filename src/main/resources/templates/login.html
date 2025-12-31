@@ -1,51 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/" th:replace="~{base::layout(~{::section})}">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Login - Ecom Store</title>
 </head>
 <body>
-	<section>
-		<div class="container mt-5 p-5">
-			<div class="row">
-				<div class="col-md-7 p-5">
-				<img alt="" src="/img/ecom.png" width="90%" height="400px">
-			</div>
-			<div class="col-md-5 mt-4">
-				<div class="card shadow mb-5 p-2 bg-body-tertiary rounded">
-					<div class="card-header">
-						<p class="fs-4 text-center">Login</p>
-						<div th:if="${param.error}" class="alert alert-danger text-center">
-							<th:block th:if="${session.SPRING_SECURITY_LAST_EXCEPTION!=null}">
-								[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
-							</th:block>
-						</div>
-						<div th:if="${param.logout}" class="alert alert-success text-center">
-							Logout Successfully
-						</div>
-					</div>
-					<div class="card-body">
-						<form action="/login" method="post">
-							<div class="mb-3">
-								<label class="form-label">Email address</label>
-								<input type="email" name="username" class="form-control" required="required">
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Password</label>
-								<input type="password" name="password" class="form-control" required="required">
-							</div>
-							<button type="submit" class="btn text-white bg-primary col-md-12">Login</button>
-						</form>
-					</div>
-					<div class="card-footer text-center">
-						<a href="/forgot-password" class="text-decoration-none">Fogot Password</a><br>
-						Don't have an Account ?
-						<a href="/register" class="text-decoration-none">Create one</a>
-					</div>
-				</div>
-			</div>
-			</div>
-		</div>
-	</section>
+    <section>
+        <div class="container py-5">
+            <div class="row align-items-center justify-content-center min-vh-75">
+                <div class="col-lg-5 d-none d-lg-block">
+                    <img src="/img/ecom.png" class="img-fluid auth-image" alt="Login">
+                </div>
+                <div class="col-lg-5 col-md-8">
+                    <div class="card auth-card">
+                        <div class="card-header text-center py-4">
+                            <h3 class="mb-1 fw-bold text-dark">Welcome Back</h3>
+                            <p class="text-muted mb-0">Sign in to your account</p>
+                        </div>
+                        <div class="card-body p-4">
+                            <th:block th:if="${param.error}">
+                                <div class="alert alert-danger text-center">
+                                    <i class="fa-solid fa-circle-exclamation me-2"></i>
+                                    <th:block th:if="${session.SPRING_SECURITY_LAST_EXCEPTION!=null}">
+                                        [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
+                                    </th:block>
+                                </div>
+                            </th:block>
+                            <th:block th:if="${param.logout}">
+                                <div class="alert alert-success text-center">
+                                    <i class="fa-solid fa-check-circle me-2"></i>Logout Successfully
+                                </div>
+                            </th:block>
+                            <form action="/login" method="post">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Email Address</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light border-end-0">
+                                            <i class="fa-solid fa-envelope text-muted"></i>
+                                        </span>
+                                        <input type="email" name="username" class="form-control border-start-0" placeholder="Enter your email" required>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label fw-semibold">Password</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light border-end-0">
+                                            <i class="fa-solid fa-lock text-muted"></i>
+                                        </span>
+                                        <input type="password" name="password" class="form-control border-start-0" placeholder="Enter your password" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">
+                                    <i class="fa-solid fa-sign-in-alt me-2"></i>Sign In
+                                </button>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center py-3 bg-light">
+                            <a href="/forgot-password" class="text-decoration-none text-primary">Forgot Password?</a>
+                            <hr class="my-3">
+                            <span class="text-muted">Don't have an account?</span>
+                            <a href="/register" class="text-decoration-none text-primary fw-semibold ms-1">Create one</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

@@ -1,86 +1,82 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/" th:replace="~{base::layout(~{::section})}">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Ecom Store</title>
 </head>
 <body>
-	<section>
-		<div class="container p-5">
-			<p class="fs-3 text-center mt-4">Admin Dashboard</p>
-			<div class="row p-5">
-				<div class="col-md-4 mt-2">
-					<a href="/admin/add-product" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-primary">
-								<i class="fa-solid fa-square-plus fa-3x"></i>
-								<h4>Add Product</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 mt-2">
-					<a href="/admin/category" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-warning">
-								<i class="fa-solid fa-list fa-3x"></i>
-								<h4>Add Category</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 mt-2">
-					<a href="/admin/products" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-success">
-								<i class="fa-solid fa-table-list fa-3x"></i>
-								<h4>View Product</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 mt-4">
-					<a href="/admin/orders" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-warning">
-								<i class="fa-solid fa-box-open fa-3x"></i>
-								<h4>Orders</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 mt-4">
-					<a href="/admin/users?type=1" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-primary">
-								<i class="fa-solid fa-circle-user fa-3x"></i>
-								<h4>Users</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 mt-4">
-					<a href="/admin/add-admin" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-primary">
-								<i class="fa-solid fa-user-plus fa-3x"></i>
-								<h4>Add Admin</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 mt-4">
-					<a href="/admin/users?type=2" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-primary">
-								<i class="fa-solid fa-circle-user fa-3x"></i>
-								<h4>Admins</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
+    <section>
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="text-white fw-bold">Admin Dashboard</h2>
+                <p class="text-white-50">Manage your store efficiently</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="/admin/add-product" class="text-decoration-none">
+                        <div class="dashboard-card">
+                            <i class="fa-solid fa-square-plus text-primary"></i>
+                            <h5 class="fw-bold text-dark">Add Product</h5>
+                            <p class="text-muted small mb-0">Add new products to store</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/admin/category" class="text-decoration-none">
+                        <div class="dashboard-card">
+                            <i class="fa-solid fa-layer-group text-warning"></i>
+                            <h5 class="fw-bold text-dark">Categories</h5>
+                            <p class="text-muted small mb-0">Manage product categories</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/admin/products" class="text-decoration-none">
+                        <div class="dashboard-card">
+                            <i class="fa-solid fa-box-open text-success"></i>
+                            <h5 class="fw-bold text-dark">Products</h5>
+                            <p class="text-muted small mb-0">View all products</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/admin/orders" class="text-decoration-none">
+                        <div class="dashboard-card">
+                            <i class="fa-solid fa-truck text-info"></i>
+                            <h5 class="fw-bold text-dark">Orders</h5>
+                            <p class="text-muted small mb-0">Manage customer orders</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/admin/users?type=1" class="text-decoration-none">
+                        <div class="dashboard-card">
+                            <i class="fa-solid fa-users text-secondary"></i>
+                            <h5 class="fw-bold text-dark">Users</h5>
+                            <p class="text-muted small mb-0">Manage registered users</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/admin/add-admin" class="text-decoration-none">
+                        <div class="dashboard-card">
+                            <i class="fa-solid fa-user-shield text-danger"></i>
+                            <h5 class="fw-bold text-dark">Add Admin</h5>
+                            <p class="text-muted small mb-0">Create new admin account</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/admin/users?type=2" class="text-decoration-none">
+                        <div class="dashboard-card">
+                            <i class="fa-solid fa-user-tie text-primary"></i>
+                            <h5 class="fw-bold text-dark">Admins</h5>
+                            <p class="text-muted small mb-0">View all administrators</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

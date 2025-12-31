@@ -1,58 +1,87 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/" th:replace="~{base::layout(~{::section})}">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Cart - Ecom Store</title>
 </head>
 <body>
-	<section>
-		<div class="container-fluid mt-5 p-5">
-			<div class="card card-sh">
-				<div class="card-header text-center">
-					<p class="fs-4">Cart Page</p>
-					<th:block th:if="${session.succMsg}">
-						<p class="text-success fw-bold">[[${session.succMsg}]]</p>
-						<th:block th:text="${@commonServiceImpl.removeSession()}"></th:block>
-					</th:block>
-					<th:block th:if="${session.errorMsg}">
-						<p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
-						<th:block th:text="${@commonServiceImpl.removeSession()}"></th:block>
-					</th:block>
-				</div>
-				<div class="card-body">
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">S No.</th>
-								<th scope="col">Image</th>
-								<th scope="col">Product Name</th>
-								<th scope="col">Price</th>
-								<th scope="col" class="text-center">Quantity</th>
-								<th scope="col">Total Price</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="cart,c : ${carts}">
-								<th scope="row">[[${c.count}]]</th>
-								<td><img th:src="@{'/img/product_img/'+${cart.product.image}}" height="70px" width="50px"></td>
-								<td>[[${cart.product.title}]]</td>
-								<td>[[${cart.product.discountPrice}]]</td>
-								<td class="text-center"><a th:href="@{'/user/cartQuantity?sy=de&cid='+${cart.id}}"><i class="fa-solid fa-minus"></i></a> [ [[${cart.quantity}]] ] <a th:href="@{'/user/cartQuantity?sy=in&cid='+${cart.id}}"><i class="fa-solid fa-plus"></i></a></td>
-								<td>[[${cart.totalPrice}]]</td>
-							</tr>
-							<tr>
-								<td colspan="4"></td>
-								<td class="fw-bold">Total Price</td>
-								<td class="fw-bold">&#8377; [[${totalOrderPrice}]]</td>
-							</tr>
-						</tbody>
-					</table>
-					<div class="text-center">
-						<a href="/user/orders" class="btn btn-primary ">Proceed Payment</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <section>
+        <div class="container py-5">
+            <div class="card">
+                <div class="card-header py-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0 fw-bold">
+                            <i class="fa-solid fa-cart-shopping text-primary me-2"></i>Shopping Cart
+                        </h4>
+                        <a href="/products" class="btn btn-outline-primary btn-sm">
+                            <i class="fa-solid fa-arrow-left me-1"></i>Continue Shopping
+                        </a>
+                    </div>
+                    <th:block th:if="${session.succMsg}">
+                        <div class="alert alert-success mt-3 mb-0">
+                            <i class="fa-solid fa-check-circle me-2"></i>[[${session.succMsg}]]
+                        </div>
+                        <th:block th:text="${@commonServiceImpl.removeSession()}"></th:block>
+                    </th:block>
+                    <th:block th:if="${session.errorMsg}">
+                        <div class="alert alert-danger mt-3 mb-0">
+                            <i class="fa-solid fa-circle-exclamation me-2"></i>[[${session.errorMsg}]]
+                        </div>
+                        <th:block th:text="${@commonServiceImpl.removeSession()}"></th:block>
+                    </th:block>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="ps-4">#</th>
+                                    <th>Product</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="cart,c : ${carts}" class="align-middle">
+                                    <td class="ps-4 fw-semibold">[[${c.count}]]</td>
+                                    <td>
+                                        <img th:src="@{'/img/product_img/'+${cart.product.image}}" class="rounded" style="height: 60px; width: 60px; object-fit: cover;">
+                                    </td>
+                                    <td class="fw-semibold">[[${cart.product.title}]]</td>
+                                    <td>&#8377; [[${cart.product.discountPrice}]]</td>
+                                    <td class="text-center">
+                                        <div class="d-flex align-items-center justify-content-center gap-2">
+                                            <a th:href="@{'/user/cartQuantity?sy=de&cid='+${cart.id}}" class="btn btn-sm btn-outline-primary rounded-circle" style="width: 32px; height: 32px;">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </a>
+                                            <span class="fw-bold px-2">[[${cart.quantity}]]</span>
+                                            <a th:href="@{'/user/cartQuantity?sy=in&cid='+${cart.id}}" class="btn btn-sm btn-outline-primary rounded-circle" style="width: 32px; height: 32px;">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="fw-bold text-primary">&#8377; [[${cart.totalPrice}]]</td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="table-light">
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td class="text-end fw-bold">Grand Total:</td>
+                                    <td class="fw-bold text-primary fs-5">&#8377; [[${totalOrderPrice}]]</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer py-4 text-center bg-light">
+                    <a href="/user/orders" class="btn btn-primary btn-lg px-5">
+                        <i class="fa-solid fa-credit-card me-2"></i>Proceed to Checkout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

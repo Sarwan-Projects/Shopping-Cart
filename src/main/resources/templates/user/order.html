@@ -1,106 +1,109 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/" th:replace="~{base::layout(~{::section})}">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Checkout - Ecom Store</title>
 </head>
 <body>
-	<section>
-		<div class="container mt-5 p-5">
-			<form action="/user/save-order" method="post" id="orders" novalidate="novalidate">
-			<div class="row">
-				<div class="col-md-6">
-						<div class="mb-3 row">
-							<p class="text-center fs-4">Billing Address</p><hr>
-							<div class="col p-1">
-								<label>First Name</label>
-								<input type="text" name="firstName" class="form-control mt-1" required="required">
-							</div>
-							<div class="col p-1">
-								<label>Last Name</label>
-								<input type="text" name="lastName" class="form-control mt-1" required="required">
-							</div>
-						</div>
-						<div class="mb-3 row">
-							<div class="col p-1">
-								<label>Email</label>
-								<input type="email" name="email" class="form-control mt-1" required="required">
-							</div>
-							<div class="col p-1">
-								<label>Mobile Number</label>
-								<input type="text" name="mobile" class="form-control mt-1" required="required">
-							</div>
-						</div>
-						<div class="mb-3 row">
-							<div class="col p-1">
-								<label>Address</label>
-								<input type="text" name="address" class="form-control mt-1" required="required">
-							</div>
-							<div class="col p-1">
-								<label>City</label>
-								<input type="text" name="city" class="form-control mt-1" required="required">
-							</div>
-						</div>
-						<div class="mb-3 row">
-							<div class="col p-1">
-								<label>State</label>
-								<input type="text" name="state" class="form-control mt-1" required="required">
-							</div>
-							<div class="col p-1">
-								<label>Pincode</label>
-								<input type="number" name="pincode" class="form-control mt-1" required="required">
-							</div>
-						</div>
-					<!-- </form>  -->
-				</div>
-				<div class="col-md-6">
-					<p class="text-center fs-4">Payment Type</p><hr>
-						<div class="card">
-							<div class="card-body">
-								<table class="table table-borderless">
-								<tbody>
-									<tr>
-										<td>Order Price</td>
-										<td>:</td>
-										<td> &#8377; [[${orderPrice}]]</td>
-									</tr>
-									<tr>
-										<td>Delivery Charges</td>
-										<td>:</td>
-										<td> &#8377; 200</td>
-									</tr>
-									<tr>
-										<td>Tax</td>
-										<td>:</td>
-										<td> &#8377; 100</td>
-									</tr>
-									<tr class="border-top">
-										<td>Total Price</td>
-										<td>:</td>
-										<td> &#8377; [[${totalOrderPrice}]]</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div class="card shadow mb-5 mt-2 p-2 bg-body-tertiary rounded">
-						<div class="card-body">
-						<!--<form action="/login" method="post"> -->
-							<div class="mb-3">
-								<label class="form-label">Select Payment Type</label>
-								<select class="form-control" name="paymentType" required="required">
-									<option value="">--select--</option>
-									<option value="COD">Cash on Delivery</option>
-									<option value="ONLINE">Online Payment</option>
-								</select>
-							</div>
-							<button class="btn text-white bg-primary col-md-12">Place Order</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			</form>
-		</div>
-	</section>
+    <section>
+        <div class="container py-5">
+            <h3 class="text-white fw-bold mb-4">
+                <i class="fa-solid fa-credit-card me-2"></i>Checkout
+            </h3>
+            <form action="/user/save-order" method="post" id="orders" novalidate="novalidate">
+                <div class="row g-4">
+                    <!-- Billing Address -->
+                    <div class="col-lg-7">
+                        <div class="card">
+                            <div class="card-header py-3">
+                                <h5 class="mb-0 fw-bold">
+                                    <i class="fa-solid fa-location-dot text-primary me-2"></i>Billing Address
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">First Name</label>
+                                        <input type="text" name="firstName" class="form-control" placeholder="John" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Last Name</label>
+                                        <input type="text" name="lastName" class="form-control" placeholder="Doe" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Email</label>
+                                        <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Mobile Number</label>
+                                        <input type="text" name="mobile" class="form-control" placeholder="9876543210" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Address</label>
+                                        <input type="text" name="address" class="form-control" placeholder="Street address" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">City</label>
+                                        <input type="text" name="city" class="form-control" placeholder="City" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">State</label>
+                                        <input type="text" name="state" class="form-control" placeholder="State" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Pincode</label>
+                                        <input type="number" name="pincode" class="form-control" placeholder="123456" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="col-lg-5">
+                        <div class="card sticky-top" style="top: 90px;">
+                            <div class="card-header py-3">
+                                <h5 class="mb-0 fw-bold">
+                                    <i class="fa-solid fa-receipt text-primary me-2"></i>Order Summary
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">Order Price</span>
+                                    <span>&#8377; [[${orderPrice}]]</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">Delivery Charges</span>
+                                    <span>&#8377; 200</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span class="text-muted">Tax</span>
+                                    <span>&#8377; 100</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between mb-4">
+                                    <span class="fw-bold fs-5">Total</span>
+                                    <span class="fw-bold fs-5 text-primary">&#8377; [[${totalOrderPrice}]]</span>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label fw-semibold">Payment Method</label>
+                                    <select class="form-control" name="paymentType" required>
+                                        <option value="">Select payment method</option>
+                                        <option value="COD">Cash on Delivery</option>
+                                        <option value="ONLINE">Online Payment</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary w-100 py-3 fw-semibold">
+                                    <i class="fa-solid fa-check me-2"></i>Place Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
 </body>
 </html>

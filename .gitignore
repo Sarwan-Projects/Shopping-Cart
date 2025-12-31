@@ -31,3 +31,31 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Environment & Secrets (NEVER commit) ###
+.env
+.env.*
+*.env
+*.local
+secrets.properties
+application-local.properties
+application-dev.properties
+application-prod.properties
+run-local.bat
+run-local.sh
+
+### Logs ###
+*.log
+logs/
+
+### OS Files ###
+.DS_Store
+Thumbs.db
+
+### Uploaded Images (keep folders, ignore content) ###
+src/main/resources/static/img/product_img/*
+src/main/resources/static/img/category_img/*
+src/main/resources/static/img/profile_img/*
+!src/main/resources/static/img/product_img/.gitkeep
+!src/main/resources/static/img/category_img/.gitkeep
+!src/main/resources/static/img/profile_img/.gitkeep

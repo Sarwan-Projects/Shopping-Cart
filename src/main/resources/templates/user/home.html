@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" th:replace="~{base::layout(~{::section})}">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>User Home - Ecom Store</title>
 </head>
 <body>
-	<h1>User Home Page</h1>
+    <section>
+        <div class="container py-5">
+            <div class="text-center">
+                <h2 class="text-white fw-bold mb-4">Welcome to Your Dashboard</h2>
+                <p class="text-white-50 mb-5">Explore our products and manage your orders</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <a href="/products" class="text-decoration-none">
+                        <div class="dashboard-card">
+                            <i class="fa-solid fa-box-open text-primary"></i>
+                            <h5 class="fw-bold text-dark">Browse Products</h5>
+                            <p class="text-muted small mb-0">Explore our collection</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/user/cart" class="text-decoration-none">
+                        <div class="dashboard-card">
+                            <i class="fa-solid fa-cart-shopping text-success"></i>
+                            <h5 class="fw-bold text-dark">My Cart</h5>
+                            <p class="text-muted small mb-0">View your cart items</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/user/user-orders" class="text-decoration-none">
+                        <div class="dashboard-card">
+                            <i class="fa-solid fa-truck text-warning"></i>
+                            <h5 class="fw-bold text-dark">My Orders</h5>
+                            <p class="text-muted small mb-0">Track your orders</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
