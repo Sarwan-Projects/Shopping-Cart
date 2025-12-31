@@ -20,6 +20,8 @@ public interface ProductService
 	
 	public Product getProductById(Integer id);
 	
+	public Product getProductBySlug(String slug);
+	
 	public Product updateProduct(Product product, MultipartFile file);
 	
 	public List<Product> getAllActiveProducts(String category);

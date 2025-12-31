@@ -60,10 +60,10 @@
                             
                             <div class="row g-4">
                                 <th:block th:if="${productsSize > 0}">
-                                    <div class="col-6 col-lg-3" th:each="p : ${products}">
+                                    <div class="col-6 col-lg-4" th:each="p : ${products}">
                                         <div class="card product-card h-100">
                                             <div class="position-relative overflow-hidden">
-                                                <img th:src="@{'/img/product_img/'+${p.image}}" class="card-img-top" alt="Product" style="height: 180px; object-fit: cover;">
+                                                <img th:src="${p.image != null && p.image != 'default.png'} ? @{'/img/product_img/'+${p.image}} : 'https://via.placeholder.com/300x200/6366f1/ffffff?text='+${p.title}" class="card-img-top" alt="Product" style="height: 200px; object-fit: cover;">
                                                 <th:block th:if="${p.discount > 0}">
                                                     <span class="position-absolute top-0 end-0 badge bg-danger m-2">
                                                         [[${p.discount}]]% OFF
@@ -78,7 +78,7 @@
                                                         <br><span class="product-original-price">&#8377; [[${p.price}]]</span>
                                                     </th:block>
                                                 </div>
-                                                <a th:href="@{'/product/'+${p.id}}" class="btn btn-primary btn-sm w-100">
+                                                <a th:href="@{'/product/'+${p.slug != null ? p.slug : p.id}}" class="btn btn-primary btn-sm w-100"></a>
                                                     <i class="fa-solid fa-eye me-1"></i>View Details
                                                 </a>
                                             </div>

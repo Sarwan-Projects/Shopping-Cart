@@ -60,6 +60,12 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
+	public Product getProductBySlug(String slug) 
+	{
+		return productRepository.findBySlug(slug);
+	}
+
+	@Override
 	public Product updateProduct(Product product, MultipartFile image) 
 	{
 		Product productById = getProductById(product.getId());

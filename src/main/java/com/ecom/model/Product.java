@@ -41,4 +41,7 @@ public class Product
 	
 	@Column(columnDefinition = "TINYINT(1)")
 	private Boolean isActive;
+	
+	@Column(unique = true, length = 255)
+	private String slug;
 }

@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class DataInitializer implements CommandLineRunner {
 
@@ -25,6 +27,16 @@ public class DataInitializer implements CommandLineRunner {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
+    private String generateSlug(String title) {
+        String baseSlug = title.toLowerCase()
+            .replaceAll("[^a-z0-9\\s-]", "")
+            .replaceAll("\\s+", "-")
+            .replaceAll("-+", "-")
+            .trim();
+        String uniqueId = UUID.randomUUID().toString().substring(0, 8);
+        return baseSlug + "-" + uniqueId;
+    }
 
     @Override
     public void run(String... args) throws Exception {
@@ -67,7 +79,6 @@ public class DataInitializer implements CommandLineRunner {
         // Create Categories if empty
         if (categoryRepo.count() == 0) {
             String[] categories = {"Electronics", "Fashion", "Home & Kitchen", "Books", "Sports", "Beauty"};
-            String[] images = {"electronics.png", "fashion.png", "home.png", "books.png", "sports.png", "beauty.png"};
             
             for (int i = 0; i < categories.length; i++) {
                 Category cat = new Category();
@@ -77,6 +88,21 @@ public class DataInitializer implements CommandLineRunner {
                 categoryRepo.save(cat);
             }
             System.out.println("✅ 6 Categories created");
+        }
+
+        // Check if products need slug update (for existing data)
+        boolean needsSlugUpdate = productRepository.findAll().stream()
+            .anyMatch(p -> p.getSlug() == null || p.getSlug().isEmpty());
+        
+        if (needsSlugUpdate && productRepository.count() > 0) {
+            // Update existing products with slugs
+            productRepository.findAll().forEach(p -> {
+                if (p.getSlug() == null || p.getSlug().isEmpty()) {
+                    p.setSlug(generateSlug(p.getTitle()));
+                    productRepository.save(p);
+                }
+            });
+            System.out.println("✅ Updated existing products with slugs");
         }
 
         // Create Products if empty
@@ -125,6 +151,7 @@ public class DataInitializer implements CommandLineRunner {
                 product.setDiscountPrice(product.getPrice() - (product.getPrice() * product.getDiscount() / 100));
                 product.setIsActive(true);
                 product.setImage("default.png");
+                product.setSlug(generateSlug(p[0]));
                 productRepository.save(product);
             }
             System.out.println("✅ 30 Products created (5 per category)");

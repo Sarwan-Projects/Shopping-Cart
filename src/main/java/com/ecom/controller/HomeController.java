@@ -128,11 +128,20 @@ public class HomeController
 		return "product";	
 	}
 	
-	@GetMapping("/product/{id}")
-	public String product(@PathVariable int id, Model m)
+	@GetMapping("/product/{slug}")
+	public String product(@PathVariable String slug, Model m)
 	{
-		Product id2 = productService.getProductById(id);
-		m.addAttribute("product", id2);
+		Product product = productService.getProductBySlug(slug);
+		if(product == null) {
+			// Fallback: try to parse as ID for backward compatibility
+			try {
+				int id = Integer.parseInt(slug);
+				product = productService.getProductById(id);
+			} catch (NumberFormatException e) {
+				// Not a number, product not found
+			}
+		}
+		m.addAttribute("product", product);
 		return "view_products";	
 	}
 	
