@@ -73,7 +73,7 @@ public class DataInitializer implements CommandLineRunner {
                 Category cat = new Category();
                 cat.setName(categories[i]);
                 cat.setImageName("default.png");
-                cat.setIsActive(true);
+                cat.setisActive(true);
                 categoryRepo.save(cat);
             }
             System.out.println("✅ 6 Categories created");
