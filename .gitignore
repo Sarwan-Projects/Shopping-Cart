@@ -52,10 +52,13 @@ logs/
 .DS_Store
 Thumbs.db
 
-### Uploaded Images (keep folders, ignore content) ###
+### Uploaded Images (keep folders, ignore user uploads) ###
 src/main/resources/static/img/product_img/*
 src/main/resources/static/img/category_img/*
 src/main/resources/static/img/profile_img/*
 !src/main/resources/static/img/product_img/.gitkeep
 !src/main/resources/static/img/category_img/.gitkeep
 !src/main/resources/static/img/profile_img/.gitkeep
+!src/main/resources/static/img/profile_img/admin.png
+!src/main/resources/static/img/profile_img/user.png
+!src/main/resources/static/img/profile_img/default.png
