@@ -84,7 +84,7 @@ public class UserController
 		{
 			session.setAttribute("succMsg", "Product Added to Cart");
 		}
-		return "redirect:/product/"+pid;
+		return "redirect:/products";
 	}
 	
 	@GetMapping("/cart")
