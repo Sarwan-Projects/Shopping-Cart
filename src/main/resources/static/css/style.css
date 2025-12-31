@@ -254,6 +254,39 @@ select.form-control {
     cursor: pointer;
 }
 
+/* Password Toggle */
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper .form-control {
+    padding-right: 45px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 5px;
+    z-index: 10;
+}
+
+.password-toggle:hover {
+    color: var(--primary);
+}
+
+/* Input Group Fix */
+.input-group-text {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-right: none;
+}
+
 /* ===== Table Styles ===== */
 .table {
     background: #fff;
@@ -297,9 +330,42 @@ select.form-control {
     margin-top: -24px;
 }
 
+.carousel-item {
+    position: relative;
+}
+
 .carousel-item img {
     object-fit: cover;
-    filter: brightness(0.85);
+    filter: brightness(0.5);
+}
+
+.carousel-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+}
+
+.carousel-caption {
+    z-index: 10;
+    bottom: 25%;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+.carousel-caption h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.9);
+    color: #fff !important;
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+    color: #fff !important;
 }
 
 .carousel-control-prev,
@@ -312,6 +378,7 @@ select.form-control {
     transform: translateY(-50%);
     opacity: 0;
     transition: var(--transition);
+    z-index: 15;
 }
 
 .carousel:hover .carousel-control-prev,
@@ -403,23 +470,32 @@ select.form-control {
 
 /* ===== Section Titles ===== */
 .section-title {
-    color: #fff;
     font-weight: 700;
     font-size: 1.75rem;
     margin-bottom: 2rem;
     position: relative;
     display: inline-block;
+    padding-bottom: 10px;
 }
 
 .section-title::after {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 60px;
-    height: 4px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
     background: var(--primary);
     border-radius: 2px;
+}
+
+.section-title.text-white::after {
+    background: var(--primary-light);
+}
+
+.section-title.text-dark::after {
+    background: var(--primary);
 }
 
 /* ===== Alert Styles ===== */

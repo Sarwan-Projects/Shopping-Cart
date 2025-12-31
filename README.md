@@ -8,250 +8,146 @@
 
 <h1 align="center">🛒 Ecom Store</h1>
 <p align="center"><strong>Modern Full-Stack E-Commerce Platform</strong></p>
-<p align="center">A production-ready online shopping application with user authentication, product catalog, shopping cart, order management, and admin dashboard.</p>
+<p align="center">
+  <a href="https://shopping-cart-hikn.onrender.com">🌐 Live Demo</a> •
+  <a href="#-test-credentials">🔑 Test Login</a> •
+  <a href="#-features">✨ Features</a>
+</p>
 
 ---
 
-## 📋 Table of Contents
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [API Endpoints](#-api-endpoints)
-- [Getting Started](#-getting-started)
-- [Deployment](#-deployment)
-- [Environment Variables](#-environment-variables)
+## 🌐 Live Demo
+
+**[https://shopping-cart-hikn.onrender.com](https://shopping-cart-hikn.onrender.com)**
+
+---
+
+## 🔑 Test Credentials
+
+| Role | Email | Password |
+|------|-------|----------|
+| **Admin** | `admin@ecom.com` | `admin123` |
+| **User** | `user@ecom.com` | `user123` |
+
+> Admin can manage products, categories, orders, and users. User can browse, add to cart, and place orders.
 
 ---
 
 ## ✨ Features
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### 🛍️ Customer Portal
-- User registration with email verification
-- Secure login with Spring Security
-- Product browsing with category filters
-- Full-text product search
-- Shopping cart with quantity management
-- Checkout with billing address
-- Order history and tracking
-- Profile and password management
-
-</td>
-<td width="50%" valign="top">
-
-### ⚙️ Admin Dashboard
-- Centralized admin panel
-- Product CRUD with image upload
-- Category management
-- Order status workflow
-- User activation/deactivation
-- Multi-admin support
-- Sales overview
-
-</td>
-</tr>
-</table>
+| Customer | Admin |
+|----------|-------|
+| User registration & login | Dashboard |
+| Browse & search products | Product management |
+| Shopping cart | Category management |
+| Order tracking | Order management |
+| Profile management | User management |
+| Password reset | Admin creation |
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Category | Technologies |
-|----------|-------------|
-| **Backend** | Spring Boot 3.4.1 • Spring Security 6.4 • Spring Data JPA • Hibernate 6.6 |
-| **Database** | MySQL 8.4 • HikariCP Connection Pool |
-| **Frontend** | Thymeleaf 3.1 • Bootstrap 5.3.3 • Font Awesome 6.5.1 • jQuery 3.7.1 |
-| **Build** | Maven • Java 17 LTS |
-| **Security** | BCrypt Encryption • CSRF Protection • Role-Based Access |
+| Layer | Technology |
+|-------|------------|
+| Backend | Spring Boot 3.4.1, Spring Security, JPA |
+| Database | MySQL 8.4, HikariCP |
+| Frontend | Thymeleaf, Bootstrap 5.3.3 |
+| Build | Maven, Java 17 |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-Shopping-Cart/
-├── 📂 src/main/java/com/ecom/
-│   ├── 📂 config/                    # Security & application config
-│   │   ├── SecurityConfig.java       # Spring Security configuration
-│   │   ├── AuthSuccessHandlerImpl.java
-│   │   ├── AuthFailureHandlerImpl.java
-│   │   ├── CustomUser.java
-│   │   └── UserDetailsServiceImpl.java
-│   │
-│   ├── 📂 controller/                # MVC Controllers
-│   │   ├── HomeController.java       # Public pages (/, /products, /login)
-│   │   ├── UserController.java       # User operations (/user/**)
-│   │   └── AdminController.java      # Admin operations (/admin/**)
-│   │
-│   ├── 📂 model/                     # JPA Entities
-│   │   ├── UserDtls.java             # User entity
-│   │   ├── Product.java              # Product entity
-│   │   ├── Category.java             # Category entity
-│   │   ├── Cart.java                 # Shopping cart entity
-│   │   ├── ProductOrder.java         # Order entity
-│   │   └── BillingAddress.java       # Billing details
-│   │
-│   ├── 📂 repository/                # Data Access Layer
-│   │   ├── UserRepository.java
-│   │   ├── ProductRepository.java
-│   │   ├── CategoryRepo.java
-│   │   ├── CartRepository.java
-│   │   └── ProductOrderRepository.java
-│   │
-│   ├── 📂 service/                   # Business Logic
-│   │   ├── UserService.java
-│   │   ├── ProductService.java
-│   │   ├── CategoryService.java
-│   │   ├── CartService.java
-│   │   ├── OrderService.java
-│   │   └── 📂 impl/                  # Service implementations
-│   │
-│   ├── 📂 util/                      # Utilities
-│   │   ├── CommonUtil.java           # Email & helper methods
-│   │   ├── OrderStatus.java          # Order status enum
-│   │   └── AppConstant.java
-│   │
-│   └── ShoppingCartApplication.java  # Main application class
-│
-├── 📂 src/main/resources/
-│   ├── 📂 static/
-│   │   ├── 📂 css/style.css          # Custom styles
-│   │   ├── 📂 js/script.js           # Form validation
-│   │   └── 📂 img/                   # Product, category, profile images
-│   │
-│   ├── 📂 templates/
-│   │   ├── base.html                 # Layout template
-│   │   ├── index.html                # Home page
-│   │   ├── login.html                # Login page
-│   │   ├── register.html             # Registration
-│   │   ├── product.html              # Product listing
-│   │   ├── view_products.html        # Product details
-│   │   ├── 📂 user/                  # User pages (cart, orders, profile)
-│   │   └── 📂 admin/                 # Admin pages (dashboard, products, orders)
-│   │
-│   └── application.properties        # Application configuration
-│
-├── pom.xml                           # Maven dependencies
-└── README.md
+src/main/java/com/ecom/
+├── config/          # Security & data initialization
+├── controller/      # HomeController, UserController, AdminController
+├── model/           # UserDtls, Product, Category, Cart, ProductOrder
+├── repository/      # JPA repositories
+├── service/         # Business logic layer
+└── util/            # Utilities & constants
+
+src/main/resources/
+├── static/          # CSS, JS, images
+├── templates/       # Thymeleaf templates (admin/, user/)
+└── application.properties
 ```
 
 ---
 
 ## 🔌 API Endpoints
 
-### 🌐 Public Endpoints
-
+### Public
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `GET` | `/` | Home page with featured products |
-| `GET` | `/products` | Product listing with pagination |
-| `GET` | `/products?category={name}` | Filter by category |
-| `GET` | `/products?ch={query}` | Search products |
-| `GET` | `/product/{id}` | Product detail page |
-| `GET` | `/signin` | Login page |
-| `GET` | `/register` | Registration page |
-| `POST` | `/saveUser` | Register new user |
-| `GET` | `/forgot-password` | Password reset request |
-| `POST` | `/reset-password` | Reset password |
+| GET | `/` | Home page |
+| GET | `/products` | Product listing |
+| GET | `/product/{id}` | Product details |
+| GET | `/signin` | Login |
+| GET | `/register` | Registration |
 
-### 👤 User Endpoints (`/user/**`)
-
+### User (`/user/**`)
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `GET` | `/user/cart` | View shopping cart |
-| `GET` | `/user/addCart?pid={id}&uid={id}` | Add product to cart |
-| `GET` | `/user/cartQuantity?sy={in/de}&cid={id}` | Update quantity |
-| `GET` | `/user/orders` | Checkout page |
-| `POST` | `/user/save-order` | Place order |
-| `GET` | `/user/user-orders` | Order history |
-| `GET` | `/user/update-status?id={id}&st={status}` | Cancel order |
-| `GET` | `/user/profile` | User profile |
-| `POST` | `/user/update-profile` | Update profile |
-| `POST` | `/user/change-password` | Change password |
+| GET | `/user/cart` | Shopping cart |
+| GET | `/user/addCart` | Add to cart |
+| POST | `/user/save-order` | Place order |
+| GET | `/user/user-orders` | Order history |
 
-### 🔐 Admin Endpoints (`/admin/**`)
-
+### Admin (`/admin/**`)
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `GET` | `/admin/` | Admin dashboard |
-| `GET` | `/admin/products` | Product management |
-| `GET` | `/admin/add-product` | Add product form |
-| `POST` | `/admin/saveProduct` | Save new product |
-| `GET` | `/admin/editProduct/{id}` | Edit product form |
-| `POST` | `/admin/updateProduct` | Update product |
-| `GET` | `/admin/deleteProduct/{id}` | Delete product |
-| `GET` | `/admin/category` | Category management |
-| `POST` | `/admin/saveCategory` | Save category |
-| `GET` | `/admin/orders` | Order management |
-| `POST` | `/admin/update-order-status` | Update order status |
-| `GET` | `/admin/users?type={1/2}` | User/Admin list |
-| `GET` | `/admin/updateStatus?status={bool}&id={id}` | Toggle user status |
+| GET | `/admin/` | Dashboard |
+| GET | `/admin/products` | Manage products |
+| GET | `/admin/category` | Manage categories |
+| GET | `/admin/orders` | Manage orders |
+| GET | `/admin/users` | Manage users |
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-- Java 17+
-- Maven 3.6+
-- MySQL 8.x
-
-### Installation
+## 🚀 Quick Start
 
 ```bash
-# Clone repository
 git clone https://github.com/Sarwan-Projects/Shopping-Cart.git
 cd Shopping-Cart
 
-# Set environment variables (Windows)
-set DB_URL=jdbc:mysql://localhost:3306/shoppingcart
-set DB_USERNAME=root
-set DB_PASSWORD=your_password
-set MAIL_USERNAME=your@gmail.com
-set MAIL_PASSWORD=your_app_password
+# Set environment variables
+set DB_URL=jdbc:mysql://host:port/database?sslMode=REQUIRED
+set DB_USERNAME=username
+set DB_PASSWORD=password
+set MAIL_USERNAME=email@gmail.com
+set MAIL_PASSWORD=app_password
 
-# Run application
 ./mvnw spring-boot:run
 ```
-
-Open **http://localhost:8080**
 
 ---
 
 ## ☁️ Deployment
 
-### Free Hosting Options
+### Environment Variables
+| Variable | Description |
+|----------|-------------|
+| `DB_URL` | MySQL JDBC URL |
+| `DB_USERNAME` | Database user |
+| `DB_PASSWORD` | Database password |
+| `MAIL_USERNAME` | Gmail address |
+| `MAIL_PASSWORD` | Gmail app password |
 
-| Platform | Free Tier | Deploy |
-|----------|-----------|--------|
-| [Render](https://render.com) | 750 hrs/month | Build: `./mvnw clean package -DskipTests` |
-| [Railway](https://railway.app) | $5 credit | Auto-detect Spring Boot |
-| [Koyeb](https://koyeb.com) | 2 nano instances | Buildpack deployment |
+### Free Hosting
+- **Render.com** - Docker deployment
+- **Railway.app** - Auto-detect Spring Boot
+- **Koyeb.com** - Buildpack deployment
 
-### Database (Free)
-- [Aiven](https://aiven.io) - MySQL free tier with SSL
-
----
-
-## 🔐 Environment Variables
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `DB_URL` | ✅ | JDBC connection URL |
-| `DB_USERNAME` | ✅ | Database username |
-| `DB_PASSWORD` | ✅ | Database password |
-| `MAIL_USERNAME` | ✅ | Gmail address |
-| `MAIL_PASSWORD` | ✅ | Gmail app password |
-| `PORT` | ❌ | Server port (default: 8080) |
+### Free Database
+- **Aiven.io** - MySQL free tier with SSL
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+MIT License
 
 ---
 
