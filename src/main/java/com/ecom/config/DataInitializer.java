@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Component
@@ -76,45 +78,103 @@ public class DataInitializer implements CommandLineRunner {
             System.out.println("✅ Test user created: user@ecom.com / user123");
         }
 
-        // Create Categories if empty
+        // Category image mapping
+        Map<String, String> categoryImages = new HashMap<>();
+        categoryImages.put("Electronics", "Electronics.jpg");
+        categoryImages.put("Fashion", "Fashion.jpg");
+        categoryImages.put("Home & Kitchen", "Home Kitchen.jpg");
+        categoryImages.put("Books", "Books.jpg");
+        categoryImages.put("Sports", "Sports.jpg");
+        categoryImages.put("Beauty", "Beauty.jpg");
+
+        // Update existing categories with images or create new ones
         if (categoryRepo.count() == 0) {
-            String[][] categories = {
-                {"Electronics", "Electronics.jpg"},
-                {"Fashion", "Fashion.jpg"},
-                {"Home & Kitchen", "Home Kitchen.jpg"},
-                {"Books", "Books.jpg"},
-                {"Sports", "Sports.jpg"},
-                {"Beauty", "Beauty.jpg"}
-            };
-            
-            for (String[] cat : categories) {
+            for (Map.Entry<String, String> entry : categoryImages.entrySet()) {
                 Category category = new Category();
-                category.setName(cat[0]);
-                category.setImageName(cat[1]);
+                category.setName(entry.getKey());
+                category.setImageName(entry.getValue());
                 category.setisActive(true);
                 categoryRepo.save(category);
             }
             System.out.println("✅ 6 Categories created");
+        } else {
+            // Update existing categories with correct images
+            categoryRepo.findAll().forEach(cat -> {
+                String imageName = categoryImages.get(cat.getName());
+                if (imageName != null && (cat.getImageName() == null || cat.getImageName().equals("default.png"))) {
+                    cat.setImageName(imageName);
+                    categoryRepo.save(cat);
+                }
+            });
+            System.out.println("✅ Categories updated with images");
         }
 
-        // Check if products need slug update (for existing data)
-        boolean needsSlugUpdate = productRepository.findAll().stream()
-            .anyMatch(p -> p.getSlug() == null || p.getSlug().isEmpty());
-        
-        if (needsSlugUpdate && productRepository.count() > 0) {
-            // Update existing products with slugs
+        // Product image mapping
+        Map<String, String> productImages = new HashMap<>();
+        productImages.put("Smartphone Pro", "Smartphone Pro.jpg");
+        productImages.put("Laptop Ultra", "Laptop Ultra.jpg");
+        productImages.put("Wireless Earbuds", "Wireless earbuds.jpg");
+        productImages.put("Smart Watch", "Smart Watch.jpg");
+        productImages.put("Bluetooth Speaker", "Bluetooth Speaker.jpg");
+        productImages.put("Power Bank", "Powerbank.jpg");
+        productImages.put("Men's T-Shirt", "Mens Tshirt.jpg");
+        productImages.put("Women's Dress", "Womens dress.jpg");
+        productImages.put("Denim Jeans", "Denim Jeans.jpg");
+        productImages.put("Sneakers", "Sneakers.jpg");
+        productImages.put("Sunglasses", "Sunglasses.jpg");
+        productImages.put("Leather Wallet", "Leather Wallet.jpg");
+        productImages.put("Cookware Set", "Cookware Set.jpg");
+        productImages.put("Blender", "Blender.jpg");
+        productImages.put("Bedsheet Set", "Bedsheet set.jpg");
+        productImages.put("Wall Clock", "Wall Clock.jpg");
+        productImages.put("Table Lamp", "Table Lamp.jpg");
+        productImages.put("Air Fryer", "Air fryer.jpg");
+        productImages.put("Fiction Novel", "Fictional Novel.jpg");
+        productImages.put("Self Help Book", "Self Help book.jpg");
+        productImages.put("Cookbook", "Cookbook.jpg");
+        productImages.put("Biography", "Biography.jpg");
+        productImages.put("Children's Book", "Children book.jpg");
+        productImages.put("Travel Guide", "Travel Guide.jpg");
+        productImages.put("Yoga Mat", "Yoga mat.jpg");
+        productImages.put("Dumbbells Set", "Dumbells sets.jpg");
+        productImages.put("Football", "Football.jpg");
+        productImages.put("Badminton Racket", "Badminton Racket.jpg");
+        productImages.put("Skipping Rope", "Skipping rope.jpg");
+        productImages.put("Tennis Ball Set", "Tennis Ball set.jpg");
+        productImages.put("Face Cream", "Face Cream.jpg");
+        productImages.put("Lipstick Set", "Lipstick set.jpg");
+        productImages.put("Perfume", "Perfume.jpg");
+        productImages.put("Hair Serum", "Hair serum.jpg");
+        productImages.put("Makeup Kit", "Makeup kit.jpg");
+        productImages.put("Nail Polish Set", "Nail Polish Set.jpg");
+
+        // Update existing products with slugs and images
+        if (productRepository.count() > 0) {
             productRepository.findAll().forEach(p -> {
+                boolean updated = false;
+                
+                // Update slug if missing
                 if (p.getSlug() == null || p.getSlug().isEmpty()) {
                     p.setSlug(generateSlug(p.getTitle()));
+                    updated = true;
+                }
+                
+                // Update image if default
+                String imageName = productImages.get(p.getTitle());
+                if (imageName != null && (p.getImage() == null || p.getImage().equals("default.png"))) {
+                    p.setImage(imageName);
+                    updated = true;
+                }
+                
+                if (updated) {
                     productRepository.save(p);
                 }
             });
-            System.out.println("✅ Updated existing products with slugs");
+            System.out.println("✅ Existing products updated with slugs and images");
         }
 
-        // Create Products if empty
-        if (productRepository.count() == 0) {
-            // Format: {title, category, description, price, stock, discount, image}
+        // Create new products if count is less than 36
+        if (productRepository.count() < 36) {
             String[][] products = {
                 {"Smartphone Pro", "Electronics", "Latest smartphone with amazing features and high-resolution display", "25000", "10", "15", "Smartphone Pro.jpg"},
                 {"Laptop Ultra", "Electronics", "High performance laptop for professionals with 16GB RAM", "65000", "8", "12", "Laptop Ultra.jpg"},
@@ -155,20 +215,26 @@ public class DataInitializer implements CommandLineRunner {
             };
 
             for (String[] p : products) {
-                Product product = new Product();
-                product.setTitle(p[0]);
-                product.setCategory(p[1]);
-                product.setDescription(p[2]);
-                product.setPrice(Double.parseDouble(p[3]));
-                product.setStock(Integer.parseInt(p[4]));
-                product.setDiscount(Integer.parseInt(p[5]));
-                product.setDiscountPrice(product.getPrice() - (product.getPrice() * product.getDiscount() / 100));
-                product.setIsActive(true);
-                product.setImage(p[6]);
-                product.setSlug(generateSlug(p[0]));
-                productRepository.save(product);
+                // Check if product already exists
+                boolean exists = productRepository.findAll().stream()
+                    .anyMatch(prod -> prod.getTitle().equals(p[0]));
+                
+                if (!exists) {
+                    Product product = new Product();
+                    product.setTitle(p[0]);
+                    product.setCategory(p[1]);
+                    product.setDescription(p[2]);
+                    product.setPrice(Double.parseDouble(p[3]));
+                    product.setStock(Integer.parseInt(p[4]));
+                    product.setDiscount(Integer.parseInt(p[5]));
+                    product.setDiscountPrice(product.getPrice() - (product.getPrice() * product.getDiscount() / 100));
+                    product.setIsActive(true);
+                    product.setImage(p[6]);
+                    product.setSlug(generateSlug(p[0]));
+                    productRepository.save(product);
+                }
             }
-            System.out.println("✅ 36 Products created (6 per category)");
+            System.out.println("✅ Products initialized (36 total)");
         }
     }
 }
