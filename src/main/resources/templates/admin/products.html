@@ -73,10 +73,10 @@
                                     </td>
                                     <td>[[${p.stock}]]</td>
                                     <td>
-                                        <a th:href="@{'/admin/editProduct/'+${p.id}}" class="btn btn-sm btn-outline-primary me-1">
+                                        <a th:href="@{'/admin/product/edit/'+${p.id}}" class="btn btn-sm btn-outline-primary me-1">
                                             <i class="fa-solid fa-edit"></i>
                                         </a>
-                                        <a th:href="@{'/admin/deleteProduct/'+${p.id}}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">
+                                        <a th:href="@{'/admin/product/delete/'+${p.id}}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">
                                             <i class="fa-solid fa-trash"></i>
                                         </a>
                                     </td>

@@ -92,10 +92,10 @@
                                                 <img th:src="@{'/img/category_img/'+${cat.imageName}}" class="rounded" style="height: 60px; width: 80px; object-fit: cover;">
                                             </td>
                                             <td>
-                                                <a th:href="@{'/admin/loadEdit/'+${cat.id}}" class="btn btn-sm btn-outline-primary me-1">
+                                                <a th:href="@{'/admin/category/edit/'+${cat.id}}" class="btn btn-sm btn-outline-primary me-1">
                                                     <i class="fa-solid fa-edit"></i>
                                                 </a>
-                                                <a th:href="@{'/admin/deleteCategory/'+${cat.id}}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">
+                                                <a th:href="@{'/admin/category/delete/'+${cat.id}}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </a>
                                             </td>

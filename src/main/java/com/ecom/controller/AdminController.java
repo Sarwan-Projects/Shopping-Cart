@@ -145,7 +145,7 @@ public class AdminController
 		return "redirect:/admin/category";
 	}
 	
-	@GetMapping("/deleteCategory/{id}")
+	@GetMapping("/category/delete/{id}")
 	public String deleteCategory(@PathVariable int id, HttpSession session)
 	{
 		boolean deleteCategory = categoryService.deleteCategory(id);
@@ -160,11 +160,11 @@ public class AdminController
 		return "redirect:/admin/category";
 	}
 	
-	@GetMapping("/loadEdit/{id}")
+	@GetMapping("/category/edit/{id}")
 	public String loadEdit(@PathVariable int id, Model m)
 	{
 		m.addAttribute("category", categoryService.getCategoryById(id));
-		return "/admin/edit_category";
+		return "admin/edit_category";
 	}
 	
 	@PostMapping("/updateCategory")
@@ -199,7 +199,7 @@ public class AdminController
 		{
 			session.setAttribute("errorMsg", "Something Wrong on Server");
 		}
-		return "redirect:/admin/loadEdit/"+category.getId();
+		return "redirect:/admin/category/edit/"+category.getId();
 	}
 	
 	@PostMapping("/saveProduct")
@@ -267,7 +267,7 @@ public class AdminController
 		return "admin/products";
 	}
 	
-	@GetMapping("/deleteProduct/{id}")
+	@GetMapping("/product/delete/{id}")
 	public String deleteProducts(@PathVariable int id, HttpSession session)
 	{
 		Boolean boolean1 = productService.deleteProducts(id);
@@ -284,7 +284,7 @@ public class AdminController
 		return "redirect:/admin/products";
 	}
 	
-	@GetMapping("/editProduct/{id}")
+	@GetMapping("/product/edit/{id}")
 	public String editProducts(@PathVariable int id, Model m)
 	{
 		m.addAttribute("product", productService.getProductById(id));
@@ -311,7 +311,7 @@ public class AdminController
 				session.setAttribute("errorMsg", "Something Wrong On Server");
 			}
 		}
-		return "redirect:/admin/editProduct/"+product.getId();
+		return "redirect:/admin/product/edit/"+product.getId();
 	}
 	
 	@GetMapping("/users")
@@ -329,7 +329,7 @@ public class AdminController
 		}
 		m.addAttribute("userType", type);
 		m.addAttribute("users", user);
-		return "/admin/users";
+		return "admin/users";
 	}
 	
 	@GetMapping("/updateStatus")
@@ -365,7 +365,7 @@ public class AdminController
 		m.addAttribute("isFirst", page.isFirst());
 		m.addAttribute("isLast", page.isLast());
 		
-		return "/admin/orders";
+		return "admin/orders";
 	}
 	
 	@PostMapping("/update-order-status")
@@ -443,7 +443,7 @@ public class AdminController
 	@GetMapping("/add-admin")
 	public String addAdmin()
 	{
-		return "/admin/add_admin";
+		return "admin/add_admin";
 	}
 	
 	@PostMapping("/save-admin")
@@ -493,7 +493,7 @@ public class AdminController
 	@GetMapping("/profile")
 	public String profile()
 	{
-		return "/admin/profile";
+		return "admin/profile";
 	}
 	
 	@PostMapping("/change-password")

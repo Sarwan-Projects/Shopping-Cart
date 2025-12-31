@@ -99,7 +99,7 @@ public class UserController
 			m.addAttribute("totalOrderPrice", totalOrderPrice);
 		}
 		
-		return "/user/cart";
+		return "user/cart";
 	}
 	
 	@GetMapping("/cartQuantity")
@@ -129,7 +129,7 @@ public class UserController
 			m.addAttribute("orderPrice", orderPrice);
 			m.addAttribute("totalOrderPrice", totalOrderPrice);
 		}
-		return "/user/order";
+		return "user/order";
 	}
 	
 	@PostMapping("/save-order")
@@ -143,7 +143,7 @@ public class UserController
 	@GetMapping("/success")
 	public String loadSuccess()
 	{
-		return "/user/success";
+		return "user/success";
 	}
 
 	@GetMapping("/user-orders")
@@ -152,7 +152,7 @@ public class UserController
 		UserDtls user = getLoggedInUserDetails(p);
 		List<ProductOrder> orders = orderService.getOrderByUser(user.getId());
 		m.addAttribute("orders", orders);
-		return "/user/my_orders";
+		return "user/my_orders";
 	}
 	
 	@GetMapping("/update-status")
@@ -192,7 +192,7 @@ public class UserController
 	@GetMapping("/profile")
 	public String profile()
 	{
-		return "/user/profile";
+		return "user/profile";
 	}
 	
 	@PostMapping("/update-profile")
