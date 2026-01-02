@@ -10,7 +10,7 @@
 <h1 align="center">🛒 Ecom Store</h1>
 <p align="center"><strong>Modern Full-Stack E-Commerce Platform with SEO-Friendly URLs</strong></p>
 <p align="center">
-  <a href="https://shopping-cart-hikn.onrender.com">🌐 Live Demo</a> •
+  <a href="https://shopping-cart-mul2.onrender.com">🌐 Live Demo</a> •
   <a href="#-test-credentials">🔑 Test Login</a> •
   <a href="#-features">✨ Features</a> •
   <a href="#-api-endpoints">📡 API</a>
@@ -20,7 +20,7 @@
 
 ## 🌐 Live Demo
 
-**[https://shopping-cart-hikn.onrender.com](https://shopping-cart-hikn.onrender.com)**
+**[https://shopping-cart-mul2.onrender.com](https://shopping-cart-mul2.onrender.com)**
 
 ---
 
